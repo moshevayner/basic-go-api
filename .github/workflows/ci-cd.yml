@@ -43,10 +43,10 @@ jobs:
     - name: Update k8s Config - QA
       if: ${{ github.ref == 'refs/heads/qa' }}
       run: |
+        git checkout qa
         cd k8s/overlays/qa
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git checkout qa
         kustomize edit set image api=mosheshi/basic-go-api-qa:$GITHUB_SHA
         cat kustomization.yml
         git commit -am "Bump image tag"
@@ -54,10 +54,10 @@ jobs:
     - name: Update k8s Config - PROD
       if: ${{ github.ref == 'refs/heads/main' }}
       run: |
+        git checkout main
         cd k8s/overlays/prod
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git checkout main
         kustomize edit set image api=mosheshi/basic-go-api:$GITHUB_SHA
         cat kustomization.yml
         git commit -am "Bump image tag"
