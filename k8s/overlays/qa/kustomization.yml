@@ -1,0 +1,34 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: qa
+
+resources:
+- ../../base
+- namespace.yml
+
+patchesStrategicMerge:
+- config.yml
+
+images:
+- name: api
+  newName: mosheshi/basic-go-api-qa
+  newTag: first-run
+
+patches:
+- patch: |-
+    - op: add
+      path: /spec/rules/0/host
+      value: k8satl-qa.k8s-meetup.s5t.dev
+    - op: add
+      path: /spec/tls/0/hosts/0
+      value: k8satl-qa.k8s-meetup.s5t.dev
+  target:
+    kind: Ingress
+    name: k8s-meetup-api
+- patch: |-
+    - op: add
+      path: /spec/template/metadata/namespace
+      value: qa
+  target:
+    kind: SealedSecret
+    name: k8s-meetup-api-secret
