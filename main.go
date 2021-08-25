@@ -3,7 +3,7 @@ package main
 import "github.com/gin-gonic/gin"
 
 func getVersion() string {
-	return "0.0.1"
+	return "0.0.2"
 }
 
 func main() {
