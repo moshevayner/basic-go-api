@@ -12,7 +12,7 @@ patchesStrategicMerge:
 images:
 - name: api
   newName: mosheshi/basic-go-api-qa
-  newTag: af8b01f53eff226d0ec33c8e20739e75b3908f39
+  newTag: 75b04dd5cfd579ccb8b68cc8fca2ac5b32f10c2d
 
 patches:
 - patch: |-
