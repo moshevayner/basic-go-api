@@ -4,7 +4,7 @@ metadata:
   name: k8s-meetup-api
 spec:
   progressDeadlineSeconds: 600
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app.kubernetes.io/component: api
